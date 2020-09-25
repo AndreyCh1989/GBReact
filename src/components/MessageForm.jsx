@@ -13,10 +13,23 @@ export default class MessageForm extends React.Component {
   };
 
   onSubmit = () => {
+    const { text, author } = this.state;
     const { addMessage } = this.props;
 
-    addMessage(this.state);
-    this.setState({text: ''});
+    if(!text){
+      alert('Please type a message');
+      return;
+    }
+
+    if(!author){
+      alert('Please type your name');
+      return;
+    }
+
+    if(typeof addMessage === 'function'){
+      addMessage(this.state);
+      this.setState({text: ''});
+    }
   };
 
   render () {
