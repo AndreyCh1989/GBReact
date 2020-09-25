@@ -6,16 +6,18 @@ export default class Messenger extends React.Component {
   state = {
     messages: [{ text: '123', author: 'qqqqq'}],
     userMessage: false,
+    lastMessageOwner: '',
   };
 
   componentDidUpdate() {
-    const { messages, userMessage } = this.state;
+    const { messages, userMessage, lastMessageOwner } = this.state;
 
     if (!userMessage) return;
     setTimeout(() => {
-      this.setState({messages: messages.concat({ text: 'Roger that', author: 'Robot'})});
+      this.setState({messages: messages.concat({ text: `${lastMessageOwner}, Roger that`, author: 'Robot'})});
     }, 1000);
     this.setState({userMessage: false});
+    this.setState({lastMessageOwner: ''});
   };
 
   addMessage = (state) => {
@@ -23,6 +25,7 @@ export default class Messenger extends React.Component {
     const { messages } = this.state;
 
     this.setState({messages: messages.concat({ text, author })});
+    this.setState({lastMessageOwner: author});
     this.setState({userMessage: true});
   };
 
