@@ -10,23 +10,25 @@ export default class Messenger extends React.Component {
   };
 
   componentDidUpdate() {
-    const { messages, userMessage, lastMessageOwner } = this.state;
+    const { userMessage, lastMessageOwner } = this.state;
 
     if (!userMessage) return;
     setTimeout(() => {
-      this.setState({messages: messages.concat({ text: `${lastMessageOwner}, Roger that`, author: 'Robot'})});
+      this.addMessage({ text: `${lastMessageOwner}, Roger that`, author: 'Robot'}, true);
     }, 1000);
     this.setState({userMessage: false});
     this.setState({lastMessageOwner: ''});
   };
 
-  addMessage = (state) => {
+  addMessage = (state, robot = false) => {
     const { text, author } = state;
     const { messages } = this.state;
 
     this.setState({messages: messages.concat({ text, author })});
-    this.setState({lastMessageOwner: author});
-    this.setState({userMessage: true});
+    if (!robot) {
+      this.setState({lastMessageOwner: author});
+      this.setState({userMessage: true});
+    }
   };
 
   render () {
