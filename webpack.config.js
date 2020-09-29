@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: {
@@ -31,14 +32,26 @@ module.exports = {
             ],
             plugins: ['@babel/plugin-proposal-class-properties']
           }
-        }
-      }
+        },
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          'style-loader',
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ],
+      },
     ]
   },
   plugins: [
-   new HtmlWebpackPlugin ({
+    new HtmlWebpackPlugin ({
      template: path.join(__dirname, 'src', 'index.html'),
      fileName: 'index.html'
-   })
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'main.css',
+    }),
   ]
 };
