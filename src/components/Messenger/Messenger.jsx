@@ -10,7 +10,7 @@ import {chats} from '../../data/chats';
 import './Messenger.scss';
 
 export class Messenger extends React.Component {
-  state = {
+  /*state = {
     chats
   };
 
@@ -61,22 +61,22 @@ export class Messenger extends React.Component {
 
     this.setState({chats: newChats});
     console.log(newChats);
-  };
+  };*/
 
   render () {
-    const messages = this.getMessages();
+    const {chats, messages, handleAddChat, handleMessageSend} = this.props;
 
     return (
       <>
         <Typography className='messages-field' component="div">
-          <ChatList addChat={this.addChat} chats={this.state.chats}/>
+          <ChatList addChat={handleAddChat} chats={chats}/>
           <div className='messages'>
             {
               messages.map((message, index) => <Message {...message} key={index}/>)
             }
           </div>
         </Typography>
-        <MessageForm addMessage={this.addMessage}>Send</MessageForm>
+        <MessageForm addMessage={handleMessageSend}>Send</MessageForm>
       </>
     )
   }

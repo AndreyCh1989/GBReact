@@ -1,4 +1,4 @@
-import {MessengerPge} from 'pages/MessengerPge';
+import {MessengerContainer} from 'containers/MessengerContainer';
 import {Profile} from 'pages/Profile';
 import {NotFound} from 'pages/NotFound';
 
@@ -6,7 +6,7 @@ export const routes = [
     {
         path: '/',
         exact: true,
-        component: MessengerPge
+        component: MessengerContainer
     },
     {
         path: '/profile',
@@ -16,7 +16,7 @@ export const routes = [
     {
         path: '/chats/:id',
         exact: true,
-        component: MessengerPge
+        component: MessengerContainer
     },
     {
         path: '*',
