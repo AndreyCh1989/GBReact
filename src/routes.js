@@ -1,5 +1,5 @@
 import {MessengerContainer} from 'containers/MessengerContainer';
-import {Profile} from 'pages/Profile';
+import {ProfileContainer} from 'containers/ProfileContainer';
 import {NotFound} from 'pages/NotFound';
 
 export const routes = [
@@ -11,7 +11,7 @@ export const routes = [
     {
         path: '/profile',
         exact: true,
-        component: Profile
+        component: ProfileContainer
     },
     {
         path: '/chats/:id',

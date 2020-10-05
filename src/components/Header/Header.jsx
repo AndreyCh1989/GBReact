@@ -7,7 +7,7 @@ import {Link, matchPath} from 'react-router-dom';
 import {withRouter} from 'react-router';
 
 import {routes} from '../../routes';
-import {Profile} from "pages/Profile";
+import {ProfileContainer} from "containers/ProfileContainer";
 
 export class Header extends React.Component {
   isProfile = () => {
@@ -15,7 +15,7 @@ export class Header extends React.Component {
       route => matchPath(this.props.location.pathname, route)
     );
 
-    return route.component === Profile;
+    return route.component === ProfileContainer;
   };
 
   render() {
