@@ -1,6 +1,6 @@
 import update from 'react-addons-update';
 
-import {CHATS_LOAD, CHATS_MESSAGE_SEND} from 'actions/chats';
+import {CHATS_LOAD, CHATS_MESSAGE_SEND, CHATS_ADD} from 'actions/chats';
 
 import {chats} from '../data/chats';
 
@@ -25,6 +25,13 @@ export const chatsReducer = (state = initialState, action) => {
                         messages: {$push: [{id: action.payload.id, text: action.payload.text, author: action.payload.author, isBot: action.payload.isBot}]},
                     },
                 },
+            });
+
+        case CHATS_ADD:
+            return update(state, {
+                entries: {
+                    $push: [{...action.payload, messages: []}]
+                }
             });
 
         default:
