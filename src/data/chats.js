@@ -3,7 +3,7 @@ export const chats = [
     id: 1,
     name: 'Chat',
     messages: [
-      { text: '123', author: 'qqqqq', isBot: false },
+      { text: 'aaaaa', author: 'qqqqq', isBot: false },
       { text: '12sgfdg3', author: 'Bot', isBot: true }
     ],
   },
@@ -13,7 +13,7 @@ export const chats = [
     messages: [
       { text: '123', author: 'qqqqq', isBot: false },
       { text: '12sgfdg3', author: 'Bot', isBot: true },
-      { text: '12sgfdg3', author: 'Bot', isBot: true }
+      { text: 'gggggg', author: 'Bot', isBot: true }
     ],
   }
 ];
