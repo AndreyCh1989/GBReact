@@ -5,6 +5,7 @@ import storage from 'redux-persist/lib/storage';
 import {createRootReducer} from 'reducers';
 import {routerMiddleware} from 'connected-react-router';
 import {botMiddleware} from './middlewares/botMiddleware';
+import {blinkingMiddleware} from './middlewares/blinkingMiddleware';
 import {persistStore, persistReducer} from 'redux-persist';
 
 export const history = createBrowserHistory();
@@ -20,7 +21,7 @@ export const initStore = () => {
         persistReducer(persistConfig, createRootReducer(history)),
         initialStore,
         composeWithDevTools(
-            applyMiddleware(botMiddleware, routerMiddleware(history)),
+            applyMiddleware(botMiddleware, blinkingMiddleware, routerMiddleware(history)),
         ));
     const persistor = persistStore(store);
     return {store, persistor};

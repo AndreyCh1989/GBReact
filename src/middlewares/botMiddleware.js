@@ -10,7 +10,7 @@ export const botMiddleware = store => next => action => {
               if (messages[messages.length - 1].isBot === false) {
                 store.dispatch(chatsMessageSendAction({id: nanoid(), chatId, text: `${author}, Roger that`, author: 'Robot', isBot: true}));
               }
-            }, 4000);
+            }, 1000);
         }
     }
     return next(action);
