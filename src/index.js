@@ -17,16 +17,16 @@ const {store, persistor} = initStore();
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
-      <ConnectedRouter history={history}>
-        <BrowserRouter>
-          <Container className="container">
-            <Header />
+      <BrowserRouter>
+        <Container className="container">
+          <Header />
+          <ConnectedRouter history={history}>
             <Switch>
               {routes.map((route, index) => (<Route key={index} {...route} />))}
             </Switch>
-          </Container>
-        </BrowserRouter>
-      </ConnectedRouter>
+          </ConnectedRouter>
+        </Container>
+      </BrowserRouter>
     </PersistGate>
   </Provider>,
   document.getElementById('root'),
