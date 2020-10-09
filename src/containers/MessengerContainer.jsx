@@ -46,8 +46,6 @@ function mapStateToProps(state, ownProps){
       messages = [];
     }
 
-    console.log('123', messages, chat, ownProps)
-
     return {
         chats,
         messages,

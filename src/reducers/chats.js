@@ -39,12 +39,11 @@ export const chatsReducer = (state = initialState, action) => {
             });
 
         case CHAT_BLINKING:
-            const q =  update(state, {
+            return update(state, {
                 entries: {
                     [state.entries.indexOf(chat)]: {$merge: {blinking: action.payload.blinking}},
                 },
             });
-            return q;
 
         default:
             return state;
