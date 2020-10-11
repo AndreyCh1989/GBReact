@@ -7,12 +7,15 @@ import {routerMiddleware} from 'connected-react-router';
 import {botMiddleware} from './middlewares/botMiddleware';
 import {blinkingMiddleware} from './middlewares/blinkingMiddleware';
 import {persistStore, persistReducer} from 'redux-persist';
+import { apiMiddleware } from 'redux-api-middleware';
+import reduxThunk from 'redux-thunk';
 
 export const history = createBrowserHistory();
 
 const persistConfig = {
     key: 'app',
     storage,
+    blacklist: ['chats'],
 };
 
 export const initStore = () => {
@@ -21,7 +24,7 @@ export const initStore = () => {
         persistReducer(persistConfig, createRootReducer(history)),
         initialStore,
         composeWithDevTools(
-            applyMiddleware(botMiddleware, blinkingMiddleware, routerMiddleware(history)),
+            applyMiddleware(botMiddleware, blinkingMiddleware, routerMiddleware(history), apiMiddleware, reduxThunk),
         ));
     const persistor = persistStore(store);
     return {store, persistor};
