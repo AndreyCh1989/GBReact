@@ -8,12 +8,12 @@ import './Messenger.scss';
 
 export class Messenger extends React.Component {
   render () {
-    const {chats, messages, handleChatsAdd, handleMessageSend} = this.props;
+    const {chats, messages, handleChatsAdd, handleMessageSend, redirect} = this.props;
 
     return (
       <>
         <Typography className='messages-field' component="div">
-          <ChatList addChat={handleChatsAdd} chats={chats}/>
+          <ChatList redirect={redirect} addChat={handleChatsAdd} chats={chats}/>
           <div className='messages'>
             {
               messages.map((message, index) => <Message {...message} key={index}/>)

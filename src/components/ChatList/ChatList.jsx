@@ -4,10 +4,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/Inbox';
-import {chats} from '../../data/chats';
 import {Link} from 'react-router-dom';
+import classNames from "classnames";
 import {Button, TextField} from "@material-ui/core";
-import {nanoid} from "nanoid";
+import {push} from 'connected-react-router';
+
+import './ChatList.scss';
 
 export class ChatList extends React.Component {
   state = {
@@ -25,21 +27,32 @@ export class ChatList extends React.Component {
   };
 
   render() {
-    const {chats} = this.props;
+    const {chats, redirect} = this.props;
     const {name} = this.state;
+
+    const chatItem = (chat) => {
+      const classes = classNames(
+        'chatItem',
+        {
+          'blinking': chat.blinking
+        }
+      );
+
+      return (
+        <ListItem key={chat.id} onClick={() => redirect(chat.id)}>
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary={chat.name} className={classes} />
+        </ListItem>
+      )
+    };
 
     return (
       <div>
         <List component="nav" aria-label="main mailbox folders">
           {
-            chats.map((chat) => (
-              <ListItem key={chat.id} component={Link} to={`/chats/${chat.id}`}>
-                <ListItemIcon>
-                  <InboxIcon />
-                </ListItemIcon>
-                <ListItemText primary={chat.name} />
-              </ListItem>
-            ))
+            chats.map(chat => chatItem(chat))
           }
         </List>
         <TextField

@@ -1,6 +1,6 @@
 import update from 'react-addons-update';
 
-import {CHATS_LOAD, CHATS_MESSAGE_SEND, CHATS_ADD} from 'actions/chats';
+import {CHATS_LOAD, CHATS_MESSAGE_SEND, CHATS_ADD, CHAT_BLINKING} from 'actions/chats';
 
 import {chats} from '../data/chats';
 
@@ -10,6 +10,11 @@ const initialState = {
 };
 
 export const chatsReducer = (state = initialState, action) => {
+    let chat = null;
+    if (action.payload?.chatId) {
+      chat = state.entries.find(e => String(e.id) === String(action.payload.chatId));
+    }
+
     switch(action.type){
         case CHATS_LOAD:
             return {
@@ -18,7 +23,6 @@ export const chatsReducer = (state = initialState, action) => {
             };
 
         case CHATS_MESSAGE_SEND:
-            const chat = state.entries.find(e => String(e.id) === String(action.payload.chatId));
             return update(state, {
                 entries: {
                     [state.entries.indexOf(chat)]: {
@@ -32,6 +36,13 @@ export const chatsReducer = (state = initialState, action) => {
                 entries: {
                     $push: [{...action.payload, messages: []}]
                 }
+            });
+
+        case CHAT_BLINKING:
+            return update(state, {
+                entries: {
+                    [state.entries.indexOf(chat)]: {$merge: {blinking: action.payload.blinking}},
+                },
             });
 
         default:
