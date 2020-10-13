@@ -1,11 +1,16 @@
 import update from 'react-addons-update';
 
-import {CHATS_LOAD, CHATS_MESSAGE_SEND, CHATS_ADD, CHAT_BLINKING} from 'actions/chats';
-
-import {chats} from '../data/chats';
+import {
+  CHATS_REQUEST,
+  CHATS_LOAD_SUCCESS,
+  CHATS_REQUEST_FAILURE,
+  CHATS_MESSAGE_SEND,
+  CHATS_ADD,
+  CHAT_BLINKING} from 'actions/chats';
 
 const initialState = {
     loading: false,
+    error: false,
     entries: [],
 };
 
@@ -16,10 +21,25 @@ export const chatsReducer = (state = initialState, action) => {
     }
 
     switch(action.type){
-        case CHATS_LOAD:
+        case CHATS_REQUEST:
             return {
                 ...state,
-                entries: chats,
+                loading: true,
+                error: false,
+            };
+
+        case CHATS_LOAD_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                entries: action.payload,
+            };
+
+        case CHATS_REQUEST_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: true,
             };
 
         case CHATS_MESSAGE_SEND:

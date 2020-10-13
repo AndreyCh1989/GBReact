@@ -8,7 +8,15 @@ import './Messenger.scss';
 
 export class Messenger extends React.Component {
   render () {
-    const {chats, messages, handleChatsAdd, handleMessageSend, redirect} = this.props;
+    const {chats, messages, handleChatsAdd, handleMessageSend, redirect, isLoading, isError, handleChatsReload} = this.props;
+
+    if(isLoading){
+      return (<div>Loading...</div>);
+    }
+
+    if(isError){
+      return (<div>Error... Попробуйте получить чаты позднее. <button onClick={handleChatsReload}>Обновить чаты</button></div>);
+    }
 
     return (
       <>

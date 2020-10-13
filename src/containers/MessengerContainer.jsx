@@ -25,11 +25,23 @@ class MessengerContainerClass extends React.Component {
         this.props.redirect(chat.id);
     };
 
+    handleChatsReload = () => {
+      this.props.chatsLoadAction();
+    };
+
     render(){
-        const {chats, messages, redirect} = this.props;
+        const {chats, messages, redirect, isLoading, isError} = this.props;
 
         return (
-            <Messenger chats={chats} messages={messages} handleChatsAdd={this.handleChatsAdd} handleMessageSend={this.handleMessageSend} redirect={redirect}/>
+            <Messenger
+              chats={chats}
+              messages={messages}
+              handleChatsAdd={this.handleChatsAdd}
+              handleMessageSend={this.handleMessageSend}
+              isLoading={isLoading}
+              isError={isError}
+              handleChatsReload={this.handleChatsReload}
+              redirect={redirect}/>
         );
     }
 }
@@ -50,6 +62,8 @@ function mapStateToProps(state, ownProps){
         chats,
         messages,
         chatId: match ? match.params.id : null,
+        isLoading: state.chats.loading,
+        isError: state.chats.error,
     };
 }
 

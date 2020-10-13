@@ -19,8 +19,8 @@ ReactDOM.render(
     <PersistGate persistor={persistor}>
       <BrowserRouter>
         <Container className="container">
-          <Header />
           <ConnectedRouter history={history}>
+            <Header />
             <Switch>
               {routes.map((route, index) => (<Route key={index} {...route} />))}
             </Switch>
