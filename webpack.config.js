@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -56,6 +57,13 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: 'main.css',
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: path.join(__dirname, 'src', 'assets', 'img'), to: path.join(__dirname, 'dist', 'img') },
+        { from: path.join(__dirname, 'src', 'sw.js'), to: path.join(__dirname, 'dist') },
+        { from: path.join(__dirname, 'src', 'manifest.json'), to: path.join(__dirname, 'dist') },
+      ],
     }),
   ],
   devtool: 'eval-source-map',

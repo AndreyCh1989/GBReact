@@ -93,7 +93,6 @@ export const chatsAddAction = (chat) => {
 export const chatBlinkingAction = (chat) => {
     return async (dispatch) => {
         try {
-            console.log('chat', chat);
             const result = await fetch(
               `http://localhost:3000/chats/${chat.chatId}`,
               {
@@ -105,6 +104,7 @@ export const chatBlinkingAction = (chat) => {
               });
             dispatch(chatBlinking(chat));
         } catch(error){
+            console.log(error);
             dispatch(chatsRequestFailureAction(error));
         }
     };

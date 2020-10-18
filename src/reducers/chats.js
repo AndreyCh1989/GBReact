@@ -40,6 +40,7 @@ export const chatsReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 error: true,
+                error_text: action,
             };
 
         case CHATS_MESSAGE_SEND:
