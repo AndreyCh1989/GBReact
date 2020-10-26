@@ -1,6 +1,6 @@
 export const chats = [
   {
-    id: 1,
+    id: "1",
     name: 'Chat',
     messages: [
       { text: 'aaaaa', author: 'qqqqq', isBot: false },
@@ -8,7 +8,7 @@ export const chats = [
     ],
   },
   {
-    id: 2,
+    id: "2",
     name: 'Chat2',
     messages: [
       { text: '123', author: 'qqqqq', isBot: false },

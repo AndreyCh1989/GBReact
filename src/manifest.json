@@ -1,0 +1,26 @@
+{
+    "name": "React Super chat",
+    "short_name": "Super Chat",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "green",
+    "description": "React super chat description",
+    "icons": [
+        {
+            "src": "img/512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "img/64.png",
+            "sizes": "64x64",
+            "type": "image/png"
+        },
+        {
+            "src": "img/16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        }
+    ]
+}
